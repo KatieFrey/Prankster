@@ -5,6 +5,8 @@
 #  id         :bigint(8)        not null, primary key
 #  joke       :string
 #  joke_type  :integer
+#  sequence   :integer
+#  uuid       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -18,5 +20,17 @@ RSpec.describe AllJoke, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:joke) }
     it { is_expected.to validate_presence_of(:joke_type) }
+    it { is_expected.to validate_presence_of(:sequence) }
+    it { is_expected.to validate_presence_of(:uuid) }
+    it {
+      is_expected.to(
+        validate_numericality_of(:sequence)
+      )
+    }
+    it {
+      is_expected.to(
+        validate_numericality_of(:uuid)
+      )
+    }
   end
 end

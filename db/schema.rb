@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_022815) do
+ActiveRecord::Schema.define(version: 2019_03_15_220240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_03_13_022815) do
     t.integer "joke_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sequence"
+    t.integer "uuid"
   end
 
   create_table "blocked_numbers", force: :cascade do |t|
