@@ -22,6 +22,7 @@ RSpec.describe AllJoke, type: :model do
     it { is_expected.to validate_presence_of(:joke_type) }
     it { is_expected.to validate_presence_of(:sequence) }
     it { is_expected.to validate_presence_of(:uuid) }
+    it { is_expected.to validate_uniqueness_of(:uuid) }
     it {
       is_expected.to(
         validate_numericality_of(:sequence)
@@ -31,6 +32,9 @@ RSpec.describe AllJoke, type: :model do
       is_expected.to(
         validate_numericality_of(:uuid)
       )
+    }
+    it {
+      should validate_uniqueness_of(:sequence).scoped_to(:joke_type)
     }
   end
 end

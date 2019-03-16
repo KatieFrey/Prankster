@@ -19,4 +19,8 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
+
+  scope :with_credits, -> { where("credits > ?", 0) }
+  scope :without_credits, -> { where(credits: 0) }
+
 end
