@@ -13,7 +13,7 @@ module Twilio
     def call
       Rails.logger.info("- Start #{self.class.name}")
 
-      client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+      client = Twilio::REST::Client.new
       client.messages.create(
         to: @to_number,
         from: @from_number,
