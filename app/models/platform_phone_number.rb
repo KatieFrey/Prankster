@@ -1,15 +1,20 @@
 # == Schema Information
 #
-# Table name: twilio_phone_numbers
+# Table name: platform_phone_numbers
 #
 #  id           :bigint(8)        not null, primary key
 #  phone_number :string
+#  provider     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 
-class TwilioPhoneNumber < ApplicationRecord
+class PlatformPhoneNumber < ApplicationRecord
   has_many :blocked_numbers, :dependent => :destroy
 
-  validates :phone_number, presence: true
+  validates :phone_number, :provider, presence: true
+
+  enum provider: {twilio: 0, nexmo: 1}
+
+
 end

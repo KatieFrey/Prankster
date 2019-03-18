@@ -29,7 +29,7 @@ class Campaign < ApplicationRecord
 
   validates :number_of_jokes, :duration, :campaign_type, presence: true
   validates :duration, numericality: { less_than_or_equal_to: 360, greater_than_or_equal_to: 30 }
-  validates :campaign_type, numericality: true
+
   validates_inclusion_of :number_of_jokes, :in => Constants::NUMBER_OF_POSSIBLE_JOKES
 
   enum campaign_type: {chuck_norris: 0, cartman: 1, trump: 2, monty_python: 3}

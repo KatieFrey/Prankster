@@ -38,14 +38,15 @@ RSpec.describe Campaign, type: :model do
         is_less_than_or_equal_to(360)
       )
     }
+
     it {
-      is_expected.to(
-        validate_numericality_of(:campaign_type)
-      )
+      is_expected.to define_enum_for(:campaign_type).with_values(chuck_norris: 0, cartman: 1, trump: 2, monty_python: 3)
     }
+
     it { is_expected.to validate_presence_of(:duration) }
     it { is_expected.to validate_presence_of(:number_of_jokes) }
     it { is_expected.to validate_presence_of(:campaign_type) }
+
 
     it { is_expected.to validate_inclusion_of(:number_of_jokes).in_array(Constants::NUMBER_OF_POSSIBLE_JOKES) }
   end

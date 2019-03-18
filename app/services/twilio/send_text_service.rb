@@ -14,7 +14,7 @@ module Twilio
       Rails.logger.info("- Start #{self.class.name}")
 
       client = Twilio::REST::Client.new
-      client.messages.create(
+      response = client.messages.create(
         to: @to_number,
         from: @from_number,
         body: @message
@@ -22,6 +22,10 @@ module Twilio
 
       Rails.logger.info("- Finish #{self.class.name}")
       ServiceResult.new(status: true)
+
+    rescue => e
+      return ServiceResult.new(status: false, message: e.message)
+
     end
   end
 end

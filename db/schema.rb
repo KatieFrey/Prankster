@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_17_011804) do
+ActiveRecord::Schema.define(version: 2019_03_18_005448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 2019_03_17_011804) do
   end
 
   create_table "blocked_numbers", force: :cascade do |t|
-    t.bigint "twilio_phone_number_id"
     t.bigint "victim_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["twilio_phone_number_id"], name: "index_blocked_numbers_on_twilio_phone_number_id"
+    t.bigint "platform_phone_number_id"
+    t.index ["platform_phone_number_id"], name: "index_blocked_numbers_on_platform_phone_number_id"
     t.index ["victim_id"], name: "index_blocked_numbers_on_victim_id"
   end
 
@@ -79,10 +79,11 @@ ActiveRecord::Schema.define(version: 2019_03_17_011804) do
     t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
 
-  create_table "twilio_phone_numbers", force: :cascade do |t|
+  create_table "platform_phone_numbers", force: :cascade do |t|
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "provider"
   end
 
   create_table "used_jokes", force: :cascade do |t|
@@ -120,7 +121,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_011804) do
   end
 
   add_foreign_key "ai_messages", "campaigns"
-  add_foreign_key "blocked_numbers", "twilio_phone_numbers"
   add_foreign_key "blocked_numbers", "victims"
   add_foreign_key "campaigns", "users"
   add_foreign_key "payment_infos", "users"
