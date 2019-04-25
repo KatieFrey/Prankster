@@ -4,6 +4,7 @@
 #
 #  id              :bigint(8)        not null, primary key
 #  campaign_type   :integer
+#  done            :boolean          default(FALSE)
 #  duration        :integer
 #  number_of_jokes :integer
 #  created_at      :datetime         not null

@@ -4,6 +4,7 @@
 #
 #  id              :bigint(8)        not null, primary key
 #  campaign_type   :integer
+#  done            :boolean          default(FALSE)
 #  duration        :integer
 #  number_of_jokes :integer
 #  created_at      :datetime         not null
@@ -26,6 +27,7 @@ class Campaign < ApplicationRecord
   has_many :victim_replies, :dependent => :destroy
   has_many :ai_messages, :dependent => :destroy
   has_many :used_jokes, :dependent => :destroy
+  has_many :all_jokes, through: :used_jokes
 
   validates :number_of_jokes, :duration, :campaign_type, presence: true
   validates :duration, numericality: { less_than_or_equal_to: 360, greater_than_or_equal_to: 30 }

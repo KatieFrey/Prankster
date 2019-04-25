@@ -57,7 +57,7 @@ module Seed
 
 
       Rails.logger.info("- Finish #{self.class.name}")
-      ServiceResult.new(status: true)
+      return ServiceResult.new(status: true)
     end
   end
 end
